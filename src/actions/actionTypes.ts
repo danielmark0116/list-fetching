@@ -1,3 +1,5 @@
+import { listingData } from "../types/listingData";
+
 export const LISTING_GET_ALL = "LISTING_GET_ALL";
 export const LISTING_PENDING = "LISTING_PENDING";
 export const LISTING_SUCCESS = "LISTING_SUCCESS";
@@ -5,7 +7,7 @@ export const LISTING_FAIL = "LISTING_FAIL";
 
 interface listingGetAllActionType {
   type: typeof LISTING_GET_ALL;
-  payload: string;
+  payload: listingData[];
 }
 
 interface listingPendingActionType {
