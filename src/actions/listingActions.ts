@@ -30,6 +30,16 @@ export const listingFail = (payload: string = ""): ActionTypes => ({
   payload
 });
 
+export const listingCount = (payload: number = 0): ActionTypes => ({
+  type: types.LISTING_TOTAL_COUNT,
+  payload
+});
+
+export const listingItemsPerPage = (payload: number = 20): ActionTypes => ({
+  type: types.LISTING_ITEMS_PER_PAGE,
+  payload
+});
+
 // THUNKS
 export const listingGetAllThunk = (limit: number = 0, skip: number = 10) => {
   return async (dispatch: Dispatch<ActionTypes>) => {
@@ -61,11 +71,17 @@ export const listingGetAllThunk = (limit: number = 0, skip: number = 10) => {
         )
       }));
 
-      console.table(finalData);
+      dispatch(listingCount(response.data.length));
       dispatch(listingGetAll(finalData));
       dispatch(listingSuccess("Successfully fetched data form the API"));
     } catch (e) {
       dispatch(listingFail(e.message));
     }
+  };
+};
+
+export const listingUpdateItemsPerPageThunk = (itemsPerPage: number) => {
+  return async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch(listingItemsPerPage(itemsPerPage));
   };
 };

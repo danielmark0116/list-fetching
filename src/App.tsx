@@ -1,11 +1,8 @@
 import React from "react";
+import IncomeList from "./features/IncomeList/IncomeList";
 
 const App = () => {
-  return (
-    <>
-      <h1>my app</h1>
-    </>
-  );
+  return <IncomeList></IncomeList>;
 };
 
 export default App;

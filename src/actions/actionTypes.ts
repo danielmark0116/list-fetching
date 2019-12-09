@@ -5,6 +5,9 @@ export const LISTING_PENDING = "LISTING_PENDING";
 export const LISTING_SUCCESS = "LISTING_SUCCESS";
 export const LISTING_FAIL = "LISTING_FAIL";
 
+export const LISTING_TOTAL_COUNT = "LISTING_TOTAL_COUNT";
+export const LISTING_ITEMS_PER_PAGE = "LISTING_ITEMS_PER_PAGE";
+
 interface listingGetAllActionType {
   type: typeof LISTING_GET_ALL;
   payload: listingData[];
@@ -25,8 +28,20 @@ interface listingFailActionType {
   payload: string;
 }
 
+interface listingTotalCountActionType {
+  type: typeof LISTING_TOTAL_COUNT;
+  payload: number;
+}
+
+interface listingItemsPerPageActionType {
+  type: typeof LISTING_ITEMS_PER_PAGE;
+  payload: number;
+}
+
 export type ActionTypes =
   | listingGetAllActionType
   | listingPendingActionType
   | listingSuccessActionType
-  | listingFailActionType;
+  | listingFailActionType
+  | listingTotalCountActionType
+  | listingItemsPerPageActionType;
