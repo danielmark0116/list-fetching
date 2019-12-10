@@ -1,4 +1,6 @@
 import React from "react";
+import { Center } from "../../common/Center/Center.styled";
+import { Button } from "../../common/Button/Button.styled";
 
 interface IProps {
   activePage: number;
@@ -10,21 +12,13 @@ const Pagination = (props: IProps) => {
   const { activePage, noOfPages, clickAction } = props;
 
   return (
-    <div>
+    <Center>
       {[...new Array(noOfPages)].map((page: any, index: number) => (
-        <button
-          style={
-            activePage === index + 1
-              ? { backgroundColor: "red" }
-              : { backgroundColor: "green" }
-          }
-          onClick={() => clickAction(index + 1)}
-          key={index}
-        >
+        <Button onClick={() => clickAction(index + 1)} key={index}>
           {index + 1}
-        </button>
+        </Button>
       ))}
-    </div>
+    </Center>
   );
 };
 

@@ -30,10 +30,26 @@ const TableHeader = (props: IProps) => {
     }
   };
 
+  const iconClass = () => {
+    switch (sortValue) {
+      case "asc":
+        return "fas fa-chevron-up";
+      case "desc":
+        return "fas fa-chevron-down";
+      default:
+        return "fas fa-chevron-down";
+    }
+  };
+
   return (
     <tr>
       <th onClick={() => clickAction("id", generateSortValue(sortValue, "id"))}>
         ID
+        {sortField === "id" && (
+          <span>
+            <i className={iconClass()}></i>
+          </span>
+        )}
       </th>
       <th
         onClick={() =>
@@ -41,6 +57,11 @@ const TableHeader = (props: IProps) => {
         }
       >
         Name
+        {sortField === "name" && (
+          <span>
+            <i className={iconClass()}></i>
+          </span>
+        )}
       </th>
       <th
         onClick={() =>
@@ -48,6 +69,11 @@ const TableHeader = (props: IProps) => {
         }
       >
         City
+        {sortField === "city" && (
+          <span>
+            <i className={iconClass()}></i>
+          </span>
+        )}
       </th>
       <th
         onClick={() =>
@@ -58,6 +84,11 @@ const TableHeader = (props: IProps) => {
         }
       >
         Total Income
+        {sortField === "totalIncome" && (
+          <span>
+            <i className={iconClass()}></i>
+          </span>
+        )}
       </th>
       <th
         onClick={() =>
@@ -68,6 +99,11 @@ const TableHeader = (props: IProps) => {
         }
       >
         Average Income
+        {sortField === "averageIncome" && (
+          <span>
+            <i className={iconClass()}></i>
+          </span>
+        )}
       </th>
       <th
         onClick={() =>
@@ -78,6 +114,11 @@ const TableHeader = (props: IProps) => {
         }
       >
         Last Month Income
+        {sortField === "lastMonthIncome" && (
+          <span>
+            <i className={iconClass()}></i>
+          </span>
+        )}
       </th>
     </tr>
   );

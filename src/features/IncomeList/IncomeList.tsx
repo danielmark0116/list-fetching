@@ -10,7 +10,7 @@ import {
 import TableItem from "../../common/TableItem/TableItem";
 import { listingData } from "../../types/listingData";
 import TableHeader from "../TableHeader/TableHeader";
-import TableContainer from "../../common/TableContainer/TableContainer";
+import Table from "../../common/Table/Table";
 import Pagination from "../Pagination/Pagination";
 import {
   listingGetAllThunk,
@@ -19,6 +19,10 @@ import {
 import { requestData } from "../../types/requestData";
 import { sortValueType, sortFieldType } from "../../types/sortTypes";
 import SearchBar from "../SearchBar/SearchBar";
+import { TableContainer } from "../../common/TableContainer/TableContainer.styled";
+import { Center } from "../../common/Center/Center.styled";
+import { Button } from "../../common/Button/Button.styled";
+import { slideIn, slideOut } from "../../animations/slideAnimation";
 
 const IncomeList = () => {
   const listings: listingData[] = useSelector(selectorListing);
@@ -40,6 +44,8 @@ const IncomeList = () => {
   const initSkip = 0;
   const initLimit = listingsPerPage;
 
+  const tableRef = React.createRef<HTMLTableElement>();
+
   useEffect(() => {
     dispatch(listingGetAllThunk(initSkip, initLimit));
   }, [""]);
@@ -59,6 +65,82 @@ const IncomeList = () => {
       )
     );
   }, [activePage, sortValue, sortField]);
+
+  if (false)
+    return (
+      <>
+        <TableContainer>
+          <Table tableRef={tableRef}>
+            <>
+              <thead>
+                <TableHeader
+                  clickAction={(
+                    sortField: sortFieldType,
+                    sortValue: sortValueType
+                  ) => {
+                    setSortField(sortField);
+                    setSortValue(sortValue);
+                    setActivePage(1);
+                  }}
+                  sortField={sortField}
+                  sortValue={sortValue}
+                ></TableHeader>
+              </thead>
+              <tbody>
+                <TableItem
+                  ref={(ref: any) => ref && slideOut(ref, 3)}
+                  data={{
+                    averageIncome: "1234.54",
+                    lastMonthIncome: "12323.3",
+                    city: "City",
+                    id: 1,
+                    name: "Name name",
+                    totalIncome: "12398.23"
+                  }}
+                ></TableItem>
+                <TableItem
+                  ref={(ref: any) => ref && slideOut(ref, 3)}
+                  data={{
+                    averageIncome: "1234.54",
+                    lastMonthIncome: "12323.3",
+                    city: "City",
+                    id: 1,
+                    name: "Name name",
+                    totalIncome: "12398.23"
+                  }}
+                ></TableItem>
+                <TableItem
+                  ref={(ref: any) => ref && slideOut(ref, 3)}
+                  data={{
+                    averageIncome: "1234.54",
+                    lastMonthIncome: "12323.3",
+                    city: "City",
+                    id: 1,
+                    name: "Name name",
+                    totalIncome: "12398.23"
+                  }}
+                ></TableItem>
+                <TableItem
+                  ref={(ref: any) => ref && slideOut(ref, 3)}
+                  data={{
+                    averageIncome: "1234.54",
+                    lastMonthIncome: "12323.3",
+                    city: "City",
+                    id: 1,
+                    name: "Name name",
+                    totalIncome: "12398.23"
+                  }}
+                ></TableItem>
+              </tbody>
+            </>
+          </Table>
+        </TableContainer>
+        <Center>
+          <Button>1</Button>
+          <Button>2</Button>
+        </Center>
+      </>
+    );
 
   if (pending) return <p>loading</p>;
 
@@ -82,32 +164,42 @@ const IncomeList = () => {
         }}
       ></SearchBar>
       <TableContainer>
-        <>
-          <thead>
-            <TableHeader
-              clickAction={(
-                sortField: sortFieldType,
-                sortValue: sortValueType
-              ) => {
-                setSortField(sortField);
-                setSortValue(sortValue);
-                setActivePage(1);
-              }}
-              sortField={sortField}
-              sortValue={sortValue}
-            ></TableHeader>
-          </thead>
-          <tbody>
-            {sortedListings.map((item: listingData, index: number) => (
-              <TableItem key={index} data={item}></TableItem>
-            ))}
-          </tbody>
-        </>
+        <Table tableRef={tableRef}>
+          <>
+            <thead>
+              <TableHeader
+                clickAction={(
+                  sortField: sortFieldType,
+                  sortValue: sortValueType
+                ) => {
+                  setSortField(sortField);
+                  setSortValue(sortValue);
+                  setActivePage(1);
+                }}
+                sortField={sortField}
+                sortValue={sortValue}
+              ></TableHeader>
+            </thead>
+            <tbody>
+              {sortedListings.map((item: listingData, index: number) => (
+                <TableItem
+                  ref={(ref: any) => ref && slideOut(ref, index)}
+                  key={index}
+                  data={item}
+                ></TableItem>
+              ))}
+            </tbody>
+          </>
+        </Table>
       </TableContainer>
       <Pagination
         activePage={activePage}
         noOfPages={Math.ceil(listingCount / listingsPerPage)}
-        clickAction={setActivePage}
+        clickAction={(pageNumber: number) => {
+          slideIn(tableRef.current, () => {
+            setActivePage(pageNumber);
+          });
+        }}
       />
     </>
   );
