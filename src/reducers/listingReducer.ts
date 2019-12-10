@@ -6,6 +6,8 @@ import { AppState } from ".";
 
 export const selectorListing = (state: AppState): listingData[] =>
   state.listing.listing;
+export const selectorListingSorted = (state: AppState): listingData[] =>
+  state.listing.sortedListing;
 export const selectorListingRequestData = (state: AppState): requestData =>
   state.listing.requestData;
 export const selectorListingCount = (state: AppState): number =>
@@ -15,6 +17,7 @@ export const selectorListingCountPerPage = (state: AppState): number =>
 
 interface initState {
   listing: listingData[];
+  sortedListing: listingData[];
   requestData: requestData;
   count: number;
   listingsPerPage: number;
@@ -22,6 +25,7 @@ interface initState {
 
 const initState: initState = {
   listing: [],
+  sortedListing: [],
   requestData: { pending: false, success: false, error: false, msg: "" },
   count: 0,
   listingsPerPage: 20
@@ -35,6 +39,10 @@ export function listingReducer(state = initState, action: ActionTypes) {
       return { ...state, count: action.payload };
     case types.LISTING_GET_ALL:
       return { ...state, listing: action.payload };
+    case types.LISTING_PAGINATE:
+      return { ...state, sortedListing: action.payload };
+    case types.LISTING_SORT:
+      return { ...state, sortedListing: action.payload };
     case types.LISTING_PENDING:
       return {
         ...state,

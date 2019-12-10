@@ -8,6 +8,9 @@ export const LISTING_FAIL = "LISTING_FAIL";
 export const LISTING_TOTAL_COUNT = "LISTING_TOTAL_COUNT";
 export const LISTING_ITEMS_PER_PAGE = "LISTING_ITEMS_PER_PAGE";
 
+export const LISTING_SORT = "LISTING_SORT";
+export const LISTING_PAGINATE = "LISTING_PAGINATE";
+
 interface listingGetAllActionType {
   type: typeof LISTING_GET_ALL;
   payload: listingData[];
@@ -38,10 +41,22 @@ interface listingItemsPerPageActionType {
   payload: number;
 }
 
+interface listingSortActionType {
+  type: typeof LISTING_SORT;
+  payload: listingData[];
+}
+
+interface listingPaginateActionType {
+  type: typeof LISTING_PAGINATE;
+  payload: listingData[];
+}
+
 export type ActionTypes =
   | listingGetAllActionType
   | listingPendingActionType
   | listingSuccessActionType
   | listingFailActionType
   | listingTotalCountActionType
-  | listingItemsPerPageActionType;
+  | listingItemsPerPageActionType
+  | listingSortActionType
+  | listingPaginateActionType;
