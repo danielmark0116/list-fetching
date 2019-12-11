@@ -1,44 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# LIST FETCHING APP
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## SUMMARY
 
-### `yarn start`
+The app fetches the data from API and then presents it in a form of a table.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Initial company data lacks the detailed information about the company income, thus for each entry there is a separate request made to the API with a goal to fetch this detailed data.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+To resolve the problem with CORS, I implemented a simple cors-anywhere NodeJS app. Initialy I used cors-anywhere.heroku.com but with each app refresh, there was too many request made for the app - that is why I decided to proxy the requests via separate nodejs app.
 
-### `yarn test`
+Initialy, I wanted to request the detailed information only for the items present on a given table page, but (from the UX point of view) it would take quite some time each and every time the user would change the active page of the table to get this data.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+That is why I decided to fetch all of the information once at the beginning, provide the user with a loading spinner and after successful fetch the user can filter and access all of the table pages instantly.
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## FEATURES
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- filtering all the possible fields by text from an form input
+- sorting each column in descending or ascending order
+- pagination of the table data
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `yarn eject`
+## TECHNOLOGIES USED
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- React with TypeScript
+- Redux for app state management
+- Axios for requests
+- cors-anywhere for resolving the issue with CORS
+- GSAP for simple animations
+- Moment for working with time data
+- styled-components for styling the DOM elements
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## INSTRUCTION
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To run the project:
 
-## Learn More
+- copy the repository
+- run `npm install`
+- run `npm run dev`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+It should start the CORS NodeJS app and the React app as well.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The app is accessible at localhost:3000
