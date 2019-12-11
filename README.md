@@ -51,3 +51,13 @@ The app is accessible at localhost:3000
 #### QUICK NOTE
 
 Give the app a couple of seconds to fetch all the data :)
+
+---
+
+## DEVTOOLS
+
+If you want to run the app with redux devtools, download the browser extension and change the value of
+
+`devTools = true`
+
+in config.ts file inside src folder.
