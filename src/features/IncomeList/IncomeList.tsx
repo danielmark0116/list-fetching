@@ -21,6 +21,8 @@ import { sortValueType, sortFieldType } from "../../types/sortTypes";
 import SearchBar from "../SearchBar/SearchBar";
 import { TableContainer } from "../../common/TableContainer/TableContainer.styled";
 import { slideOut } from "../../animations/slideAnimation";
+import Loader from "../../common/Loader/Loader";
+import { Center } from "../../common/Center/Center.styled";
 
 const IncomeList = () => {
   const listings: listingData[] = useSelector(selectorListing);
@@ -67,14 +69,14 @@ const IncomeList = () => {
   return (
     <>
       <SearchBar
-        inputHandler={(text: string) => setSearchString(text)}
         inputValue={searchString}
         submitAction={(searchStr: string) => {
           setSearchString(searchStr);
           setActivePage(1);
         }}
       ></SearchBar>
-      {pending && <p>Loading...</p>}
+      {pending && <Loader />}
+      {error && <Center>Something went wrong...</Center>}
       {sortedListings.length === 0 && success && <p>No records...</p>}
       {sortedListings.length > 0 && success && (
         <>
@@ -111,9 +113,6 @@ const IncomeList = () => {
             activePage={activePage}
             noOfPages={Math.ceil(listingCount / listingsPerPage)}
             clickAction={(pageNumber: number) => {
-              // slideIn(tableRef.current, () => {
-              //   setActivePage(pageNumber);
-              // });
               setActivePage(pageNumber);
             }}
           />

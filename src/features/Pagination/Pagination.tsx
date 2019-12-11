@@ -14,16 +14,6 @@ const Pagination = (props: IProps) => {
   return (
     <Center>
       <>
-        {/* {[...new Array(noOfPages)].map((page: any, index: number) => (
-          <Button
-            active={false}
-            onClick={() => clickAction(index + 1)}
-            key={index}
-          >
-            {index + 1}
-          </Button>
-        ))} */}
-
         {activePage > 3 && (
           <Button
             active={false}
