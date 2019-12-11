@@ -47,3 +47,7 @@ To run the project:
 It should start the CORS NodeJS app and the React app as well.
 
 The app is accessible at localhost:3000
+
+#### QUICK NOTE
+
+Give the app a couple of seconds to fetch all the data :)
