@@ -28,7 +28,7 @@ const initState: initState = {
   sortedListing: [],
   requestData: { pending: false, success: false, error: false, msg: "" },
   count: 0,
-  listingsPerPage: 20
+  listingsPerPage: 10
 };
 
 export function listingReducer(state = initState, action: ActionTypes) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface IProps {
   submitAction: Function;
@@ -7,20 +7,22 @@ interface IProps {
 }
 
 const SearchBar = (props: IProps) => {
+  const [searchStr, setSearchStr] = useState<string>("");
+
   const { submitAction, inputHandler, inputValue } = props;
 
   return (
     <form
       onSubmit={(e: React.SyntheticEvent) => {
         e.preventDefault();
-        submitAction();
+        submitAction(searchStr);
       }}
     >
       <input
         type="text"
-        value={inputValue}
+        value={searchStr}
         onChange={(e: React.FormEvent<HTMLInputElement>) => {
-          inputHandler(e.currentTarget.value);
+          setSearchStr(e.currentTarget.value);
         }}
       />
     </form>

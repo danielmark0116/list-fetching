@@ -34,7 +34,7 @@ export const Table = styled.table`
           color: ${props => props.theme.colorWhite};
           padding: 5px;
           border-radius: 5px;
-          background: ${props => props.theme.colorDark};
+          background: ${props => props.theme.colorPrimary};
         }
       }
     }
