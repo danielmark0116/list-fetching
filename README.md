@@ -10,7 +10,7 @@ Initial company data lacks the detailed information about the company income, th
 
 To resolve the problem with CORS, I implemented a simple cors-anywhere NodeJS app. Initialy I used cors-anywhere.heroku.com but with each app refresh, there was too many request made for the app - that is why I decided to proxy the requests via separate nodejs app.
 
-Initialy, I wanted to request the detailed information only for the items present on a given table page, but (from the UX point of view) it would take quite some time each and every time the user would change the active page of the table to get this data.
+Initialy, I wanted to request the detailed information only for the items present on a given table page, but (from the UX point of view) it would take quite some time each and every time the user would change the active page of the table to get this data. Also, it is better in terms of sorting the data.
 
 That is why I decided to fetch all of the information once at the beginning, provide the user with a loading spinner and after successful fetch the user can filter and access all of the table pages instantly.
 
